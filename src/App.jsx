@@ -1,6 +1,8 @@
+import Header from "./components/Header.jsx";
+
 const App = () => {
     return (<div>
-        this is a guitar practice tool
+        <Header />
     </div>)
 }
 
