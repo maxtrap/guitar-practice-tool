@@ -25,6 +25,7 @@ const Header = () => {
 
     const textStyle = {
         marginTop: 20,
+        color: '#eee'
     }
 
     return <header style={headerStyle}>
