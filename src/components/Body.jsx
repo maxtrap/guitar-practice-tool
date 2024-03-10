@@ -1,5 +1,6 @@
 import { styled, createGlobalStyle } from "styled-components";
 import { COLORS } from '../constants'
+import MetronomePulse from "./MetronomePulse.jsx";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -12,7 +13,11 @@ const GlobalStyle = createGlobalStyle`
 
 const BodyDiv = styled.div`
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
 `
 
 const Body = () => {
@@ -20,7 +25,7 @@ const Body = () => {
         <>
             <GlobalStyle />
             <BodyDiv>
-
+                <MetronomePulse />
             </BodyDiv>
         </>
     )

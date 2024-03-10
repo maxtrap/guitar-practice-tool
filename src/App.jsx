@@ -1,11 +1,13 @@
 import Header from "./components/Header.jsx";
 import Body from './components/Body'
 
+
+
 const App = () => {
-    return (<div>
+    return (<>
         <Header />
         <Body />
-    </div>)
+    </>)
 }
 
 export default App
