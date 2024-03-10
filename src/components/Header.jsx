@@ -1,9 +1,9 @@
-const darkGrey = 'rgba(36,17,47,0.94)'
+import { COLORS } from '../constants'
 
 const Header = () => {
     const headerStyle = {
         width: '100%',
-        backgroundColor: darkGrey, //or #3d4147,
+        // backgroundColor: COLORS.PRIMARY, //or #3d4147,
         padding: 10,
         boxSizing: 'border-box'
         // overflow: 'hidden'
@@ -15,7 +15,7 @@ const Header = () => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        background: 'linear-gradient(to right, #d465fc, #ab3dff)',
+        background: `linear-gradient(to right, ${COLORS.SECONDARY}, ${COLORS.TERTIARY})`,
 
         borderWidth: '5px',
         borderColor: 'black',
@@ -25,7 +25,7 @@ const Header = () => {
 
     const textStyle = {
         marginTop: 20,
-        color: '#eee'
+        color: COLORS.FONT_COLOR
     }
 
     return <header style={headerStyle}>
