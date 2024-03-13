@@ -1,6 +1,7 @@
-import { styled, createGlobalStyle } from "styled-components";
+import { styled, createGlobalStyle } from "styled-components"
 import { COLORS } from '../constants'
-import MetronomePulse from "./MetronomePulse.jsx";
+import MetronomePulse from "./MetronomePulse.jsx"
+import Slider from './Slider'
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -26,6 +27,7 @@ const Body = () => {
             <GlobalStyle />
             <BodyDiv>
                 <MetronomePulse />
+                <Slider />
             </BodyDiv>
         </>
     )

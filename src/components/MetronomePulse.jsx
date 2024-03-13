@@ -7,6 +7,7 @@ const MetronomeRing = styled.div`
     border: 10px solid ${COLORS.SECONDARY};
     border-radius: 50%;
     background: ${COLORS.QUATERNARY};
+    margin: 30px;
 `
 
 const MetronomePulse = () => {
