@@ -8,13 +8,21 @@ const MetronomeRing = styled.div`
     border-radius: 50%;
     background: ${COLORS.QUATERNARY};
     margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
-const MetronomePulse = () => {
+const TempoDisplay = styled.p`
+    font-size: 45px;
+    font-weight: bold;
+`
+
+const MetronomePulse = ({ tempo }) => {
     return (
         <div>
             <MetronomeRing>
-
+                <TempoDisplay>{tempo}</TempoDisplay>
             </MetronomeRing>
         </div>
     )

@@ -36,7 +36,7 @@ const StyledTrack = styled.div`
 const Thumb = (props) => <StyledThumb {...props}></StyledThumb>
 const Track = (props, state) => <StyledTrack {...props} $index={state.index} />;
 
-const Slider = () => {
+const Slider = ({ initialValue, onChange }) => {
     return (<StyledSlider
         min={30}
         max={200}
@@ -44,6 +44,9 @@ const Slider = () => {
         thumbActiveClassName={sliderStyle.activeThumb}
         renderTrack={Track}
         renderThumb={Thumb}
+        defaultValue={initialValue}
+        onChange={onChange}
+
     />)
 }
 
