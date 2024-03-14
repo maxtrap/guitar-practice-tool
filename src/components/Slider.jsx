@@ -1,38 +1,47 @@
-import { useState } from 'react';
 import { COLORS } from '../constants'
 import styled from 'styled-components'
 import ReactSlider from 'react-slider'
+import sliderStyle from './slider.module.css'
 
 
-const SLIDER_WIDTH = 200;
+const SLIDER_WIDTH = '40%';
 const SLIDER_HEIGHT = 30;
 
 const THUMB_SIZE = SLIDER_HEIGHT;
 
+
 const StyledSlider = styled(ReactSlider)`
-    border: white solid 5px;
-    width: ${SLIDER_WIDTH}px;
+    width: ${SLIDER_WIDTH};
     height: ${SLIDER_HEIGHT}px;
+    display: flex;
+    align-items: center;
 `
 
 
 const StyledThumb = styled.div`
     width: ${THUMB_SIZE}px;
     height: ${THUMB_SIZE}px;
-    background: blue;
-    border-radius: ;
+    background: ${COLORS.SECONDARY};
+    border-radius: 25%;
 `
 
 const StyledTrack = styled.div`
+    height: 10px;
+    background: ${COLORS.TERTIARY};
+    
+    margin-right: ${({ $index }) => ($index === 0 ? THUMB_SIZE + 4 : 0)}px;
+    margin-left: ${({ $index }) => ($index === 1 ? THUMB_SIZE + 4 : 0)}px;
 `
 
 const Thumb = (props) => <StyledThumb {...props}></StyledThumb>
-const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
+const Track = (props, state) => <StyledTrack {...props} $index={state.index} />;
 
 const Slider = () => {
     return (<StyledSlider
         min={30}
         max={200}
+        step={5}
+        thumbActiveClassName={sliderStyle.activeThumb}
         renderTrack={Track}
         renderThumb={Thumb}
     />)
