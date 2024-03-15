@@ -4,12 +4,11 @@ import { COLORS } from '../constants.js'
 
 const StyledButton = styled.input`
     background: ${COLORS.PRIMARY};
-    width: 140px;
-    height: 40px;
     margin: 15px 0 20px 0;
+    padding: 8px;
     
     color: ${COLORS.FONT_COLOR};
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     
     border: ${COLORS.SECONDARY} solid 3px;

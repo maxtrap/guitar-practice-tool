@@ -18,5 +18,5 @@ export const TEMPO_RANGE = {
 export const NOTIF_TYPES = Object.freeze({
     NONE: "",
     TEXT_ONLY: "Please enter an integer value",
-    OUT_OF_RANGE: "Tempo must be between 30 and 200 beats per minute"
+    OUT_OF_RANGE: `Tempo must be between ${TEMPO_RANGE.MIN_TEMPO} and ${TEMPO_RANGE.MAX_TEMPO} beats per minute`
 })
