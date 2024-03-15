@@ -6,16 +6,26 @@ const INITIAL_VALUE = 120;
 
 const Metronome = () => {
     const [tempo, setTempo] = useState(INITIAL_VALUE)
+    const [inputValue, setInputValue] = useState(INITIAL_VALUE)
     const [sliderValue, setSliderValue] = useState(INITIAL_VALUE)
+
+    const handleInputChange = event => {
+        setInputValue(event.target.value)
+    }
 
     const handleSliderChange = value => {
         setSliderValue(value)
         setTempo(value)
     }
 
+
+
+
     return (
         <>
-            <MetronomePulse tempo={tempo} setTempo={setTempo} />
+            <form onSubmit={() => setTempo(inputValue)}>
+                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} />
+            </form>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
         </>
     )

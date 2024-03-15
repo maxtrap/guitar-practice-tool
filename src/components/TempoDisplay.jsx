@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { COLORS } from '../constants'
-import {useEffect, useState} from "react";
 
 
 const StyledTempoInput = styled.input`
@@ -20,26 +19,8 @@ const StyledTempoInput = styled.input`
     }
 `
 
-const TempoDisplay = ({ tempo, setTempo }) => {
-    const [inputValue, setInputValue] = useState(tempo)
-
-    useEffect(() => {
-        setInputValue(tempo)
-    }, [tempo])
-
-    const handleTempoChange = (event) => {
-        const newTempo = event.target.value;
-
-        if (newTempo === '' || /^[0-9]+$/.test(newTempo)) {
-            setTempo(newTempo)
-        }
-    }
-
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value)
-    }
-
-    return <StyledTempoInput value={inputValue} onChange={handleInputChange} width={inputValue.toString().length} />
+const TempoDisplay = ({ inputValue, onChange }) => {
+    return <StyledTempoInput value={inputValue} onChange={onChange} width={inputValue.toString().length} />
 }
 
 export default TempoDisplay;
