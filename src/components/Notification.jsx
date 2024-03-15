@@ -6,6 +6,7 @@ const StyledNotification = styled.div`
     font-size: 20px;
     
     width: 50%;
+    min-height:50px;
     background: ${COLORS.ERROR_PRIMARY};
     
     padding: 10px;
@@ -13,12 +14,13 @@ const StyledNotification = styled.div`
     border-radius: 5px;
 `
 
-const Notification = ({ notifType }) => {
-    if (notifType === NOTIF_TYPES.NONE) {
-        return null
+const Notification = ({ notifType, style }) => {
+
+    const visibilityStyle = {
+        visibility: notifType === NOTIF_TYPES.NONE ? "hidden" : "visible"
     }
 
-    return <StyledNotification>{notifType}</StyledNotification>
+    return <StyledNotification style={{...style, ...visibilityStyle}}>{notifType}</StyledNotification>
 }
 
 export default Notification
