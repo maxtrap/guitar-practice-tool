@@ -28,13 +28,12 @@ const Metronome = () => {
     const [sliderValue, setSliderValue] = useState(INITIAL_VALUE)
     const [notifType, setNotifType] = useState(NOTIF_TYPES.NONE)
 
-    // useEffect(() => {
-    //     console.log(tempo)
-    // }, [tempo])
 
     const handleInputChange = event => {
-        if (event.target.value.length <= 5) {
-            setInputValue(event.target.value)
+        const newValue = event.target.value
+
+        if (newValue.length <= 5 && /^[0-9]+$/.test(newValue)) {
+            setInputValue(newValue)
         }
     }
 
@@ -44,13 +43,8 @@ const Metronome = () => {
         setTempo(value)
     }
 
-    const handleTempoChange = (event) => {
+    const handleTempoInput = (event) => {
         event.preventDefault()
-
-        if (!/^[0-9]+$/.test(inputValue)) {
-            setNotifType(NOTIF_TYPES.TEXT_ONLY)
-            return
-        }
 
         const newTempo = Number.parseInt(inputValue)
 
@@ -60,14 +54,15 @@ const Metronome = () => {
         }
 
         setTempo(newTempo)
+        setSliderValue(newTempo)
         setNotifType(NOTIF_TYPES.NONE)
     }
 
     return (
         <StyledMetronome>
-            <StyledForm onSubmit={handleTempoChange}>
-                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} />
+            <StyledForm onSubmit={handleTempoInput}>
                 <Notification notifType={notifType} />
+                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} />
                 <SetTempoButton />
             </StyledForm>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />

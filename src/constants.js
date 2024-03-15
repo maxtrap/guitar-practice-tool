@@ -1,10 +1,13 @@
 
 export const COLORS = {
-    PRIMARY: '#27122F',
-    SECONDARY: '#d465fc',
-    TERTIARY: '#ab3dff',
-    QUATERNARY: '#e51ad2',
-    FONT_COLOR: '#eee'
+    PRIMARY: '#d465fc',
+    SECONDARY: '#ab3dff',
+    TERTIARY: '#e51ad2',
+    QUATERNARY: '#27122F',
+
+    FONT_COLOR: '#eee',
+    ERROR_PRIMARY: '#800000',
+    ERROR_SECONDARY: '#4d0000'
 }
 
 export const TEMPO_RANGE = {

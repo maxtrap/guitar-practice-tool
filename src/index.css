@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     width: 100%;
-    display: flex; /* Enable flexbox for parent elements */
+    display: flex;
     flex-direction: column;
     align-items: stretch;
 }

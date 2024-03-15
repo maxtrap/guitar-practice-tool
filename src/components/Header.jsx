@@ -15,7 +15,7 @@ const InsideHeader = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: linear-gradient(to right, ${COLORS.SECONDARY}, ${COLORS.TERTIARY});
+    background: linear-gradient(to right, ${COLORS.PRIMARY}, ${COLORS.SECONDARY});
 
     border-width: 5px;
     border-color: black;

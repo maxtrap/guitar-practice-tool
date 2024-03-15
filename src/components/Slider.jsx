@@ -22,13 +22,13 @@ const StyledSlider = styled(ReactSlider)`
 const StyledThumb = styled.div`
     width: ${THUMB_SIZE}px;
     height: ${THUMB_SIZE}px;
-    background: ${COLORS.SECONDARY};
+    background: ${COLORS.PRIMARY};
     border-radius: 25%;
 `
 
 const StyledTrack = styled.div`
     height: 10px;
-    background: ${COLORS.TERTIARY};
+    background: ${COLORS.SECONDARY};
     
     margin-right: ${({ $index }) => ($index === 0 ? THUMB_SIZE + 4 : 0)}px;
     margin-left: ${({ $index }) => ($index === 1 ? THUMB_SIZE + 4 : 0)}px;

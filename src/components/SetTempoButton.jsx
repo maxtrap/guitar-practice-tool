@@ -3,7 +3,7 @@ import { COLORS } from '../constants.js'
 
 
 const StyledButton = styled.input`
-    background: ${COLORS.SECONDARY};
+    background: ${COLORS.PRIMARY};
     width: 140px;
     height: 40px;
     margin: 15px 0 20px 0;
@@ -12,7 +12,7 @@ const StyledButton = styled.input`
     font-size: 25px;
     font-weight: bold;
     
-    border: ${COLORS.TERTIARY} solid 3px;
+    border: ${COLORS.SECONDARY} solid 3px;
     border-radius: 10px;
 `
 
