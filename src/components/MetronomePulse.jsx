@@ -8,7 +8,6 @@ const MetronomeRing = styled.div`
     border: 10px solid ${COLORS.SECONDARY};
     border-radius: 50%;
     background: ${COLORS.QUATERNARY};
-    margin: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
