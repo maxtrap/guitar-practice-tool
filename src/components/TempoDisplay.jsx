@@ -11,6 +11,12 @@ const StyledTempoInput = styled.input`
     height: 45px;
     
     width: ${ ({ width }) => (width) }ch;
+
+    &:focus {
+        outline: ${COLORS.FONT_COLOR} solid 2px;
+        border-radius: 4px;
+        box-shadow: 0 0 20px ${COLORS.FONT_COLOR};
+    }
 `
 
 const TempoDisplay = ({ tempo, setTempo }) => {
