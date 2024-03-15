@@ -7,7 +7,11 @@ export const COLORS = {
 
     FONT_COLOR: '#eee',
     ERROR_PRIMARY: '#800000',
-    ERROR_SECONDARY: '#4d0000'
+    ERROR_SECONDARY: '#4d0000',
+
+    PRIMARY_DARK: '#662f79',
+    SECONDARY_DARK: '#541f7c',
+    FONT_COLOR_DARK: '#575757',
 }
 
 export const TEMPO_RANGE = {

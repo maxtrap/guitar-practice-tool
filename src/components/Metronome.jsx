@@ -60,7 +60,7 @@ const Metronome = ({ notify }) => {
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
                 <MetronomePulse inputValue={inputValue} onChange={handleInputChange} />
-                <SetTempoButton />
+                <SetTempoButton enabled={tempo.toString() !== inputValue}/>
             </StyledForm>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
         </StyledMetronome>
