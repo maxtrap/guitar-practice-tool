@@ -15,11 +15,11 @@ const MetronomeRing = styled.div`
 
 
 
-const MetronomePulse = ({ inputValue, onChange }) => {
+const MetronomePulse = ({ inputValue, onChange, inputRef }) => {
     return (
         <div>
             <MetronomeRing>
-                <TempoDisplay inputValue={inputValue} onChange={onChange} />
+                <TempoDisplay inputValue={inputValue} onChange={onChange} inputRef={inputRef} />
             </MetronomeRing>
         </div>
     )
