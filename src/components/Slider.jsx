@@ -1,4 +1,4 @@
-import { COLORS } from '../constants'
+import { COLORS, TEMPO_RANGE } from '../constants'
 import styled from 'styled-components'
 import ReactSlider from 'react-slider'
 import sliderStyle from './slider.module.css'
@@ -39,8 +39,8 @@ const Track = (props, state) => <StyledTrack {...props} $index={state.index} />;
 
 const Slider = ({ initialValue, value, onChange }) => {
     return (<StyledSlider
-        min={30}
-        max={200}
+        min={TEMPO_RANGE.MIN_TEMPO}
+        max={TEMPO_RANGE.MAX_TEMPO}
         step={5}
         thumbActiveClassName={sliderStyle.activeThumb}
         renderTrack={Track}
