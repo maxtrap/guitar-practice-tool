@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { COLORS } from '../constants'
+import TempoDisplay from "./TempoDisplay.jsx";
 
 const MetronomeRing = styled.div`
     width: 150px;
@@ -13,16 +14,13 @@ const MetronomeRing = styled.div`
     justify-content: center;
 `
 
-const TempoDisplay = styled.p`
-    font-size: 45px;
-    font-weight: bold;
-`
 
-const MetronomePulse = ({ tempo }) => {
+
+const MetronomePulse = ({ tempo, setTempo }) => {
     return (
         <div>
             <MetronomeRing>
-                <TempoDisplay>{tempo}</TempoDisplay>
+                <TempoDisplay tempo={tempo} setTempo={setTempo} />
             </MetronomeRing>
         </div>
     )

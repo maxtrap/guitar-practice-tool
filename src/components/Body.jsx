@@ -4,6 +4,8 @@ import MetronomePulse from "./MetronomePulse.jsx"
 import Slider from './Slider'
 import {useState} from "react";
 
+const INITIAL_VALUE = 120;
+
 const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
@@ -27,15 +29,15 @@ const BodyDiv = styled.div`
 `
 
 const Body = () => {
-    const [tempo, setTempo] = useState(120)
+    const [tempo, setTempo] = useState(INITIAL_VALUE)
 
 
     return (
         <>
             <GlobalStyle />
             <BodyDiv>
-                <MetronomePulse tempo={tempo} />
-                <Slider initialValue={tempo} onChange={value => setTempo(value)} />
+                <MetronomePulse tempo={tempo} setTempo={setTempo} />
+                <Slider initialValue={INITIAL_VALUE} onChange={value => setTempo(value)} />
             </BodyDiv>
         </>
     )
