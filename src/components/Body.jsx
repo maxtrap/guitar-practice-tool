@@ -1,10 +1,6 @@
 import { styled, createGlobalStyle } from "styled-components"
 import { COLORS } from '../constants'
-import MetronomePulse from "./MetronomePulse.jsx"
-import Slider from './Slider'
-import {useState} from "react";
-
-const INITIAL_VALUE = 120;
+import Metronome from "./Metronome.jsx";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -29,15 +25,13 @@ const BodyDiv = styled.div`
 `
 
 const Body = () => {
-    const [tempo, setTempo] = useState(INITIAL_VALUE)
 
 
     return (
         <>
             <GlobalStyle />
             <BodyDiv>
-                <MetronomePulse tempo={tempo} setTempo={setTempo} />
-                <Slider initialValue={INITIAL_VALUE} onChange={value => setTempo(value)} />
+                <Metronome />
             </BodyDiv>
         </>
     )

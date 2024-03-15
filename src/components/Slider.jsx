@@ -2,6 +2,7 @@ import { COLORS } from '../constants'
 import styled from 'styled-components'
 import ReactSlider from 'react-slider'
 import sliderStyle from './slider.module.css'
+import {useState} from "react";
 
 
 const SLIDER_WIDTH = '40%';
@@ -36,7 +37,7 @@ const StyledTrack = styled.div`
 const Thumb = (props) => <StyledThumb {...props}></StyledThumb>
 const Track = (props, state) => <StyledTrack {...props} $index={state.index} />;
 
-const Slider = ({ initialValue, onChange }) => {
+const Slider = ({ initialValue, value, onChange }) => {
     return (<StyledSlider
         min={30}
         max={200}
@@ -45,6 +46,7 @@ const Slider = ({ initialValue, onChange }) => {
         renderTrack={Track}
         renderThumb={Thumb}
         defaultValue={initialValue}
+        value={value}
         onChange={onChange}
 
     />)
