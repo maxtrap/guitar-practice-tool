@@ -2,7 +2,6 @@ import { COLORS, TEMPO_RANGE } from '../constants'
 import styled from 'styled-components'
 import ReactSlider from 'react-slider'
 import sliderStyle from './slider.module.css'
-import {useState} from "react";
 
 
 const SLIDER_WIDTH = '40%';

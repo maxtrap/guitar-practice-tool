@@ -25,3 +25,8 @@ export const NOTIF_TYPES = Object.freeze({
     OUT_OF_RANGE: `Tempo must be between ${TEMPO_RANGE.MIN_TEMPO} and ${TEMPO_RANGE.MAX_TEMPO} beats per minute`,
     NOT_A_NUMBER: "Tempo must be a number"
 })
+
+export const BUTTON_TYPES = {
+    PLUS: 1,
+    MINUS: 2
+}

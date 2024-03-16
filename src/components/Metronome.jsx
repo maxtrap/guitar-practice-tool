@@ -2,7 +2,8 @@ import MetronomePulse from "./MetronomePulse.jsx";
 import Slider from "./Slider.jsx";
 import {useRef, useState} from "react";
 import { styled } from "styled-components";
-import { TEMPO_RANGE, NOTIF_TYPES } from "../constants.js";
+import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
+import IconButton from "./IconButton.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -75,6 +76,7 @@ const Metronome = ({ notify }) => {
                 <MetronomePulse inputValue={inputValue} onChange={handleInputChange} inputRef={inputRef} onFocusOut={handleFocusOut} />
             </StyledForm>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
+            <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={() => console.log('clicked')}/>
         </StyledMetronome>
     )
 }
