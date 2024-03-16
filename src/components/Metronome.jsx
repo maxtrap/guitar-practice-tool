@@ -1,9 +1,9 @@
 import MetronomePulse from "./MetronomePulse.jsx";
-import Slider from "./Slider.jsx";
 import {useRef, useState} from "react";
 import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
 import IconButton from "./IconButton.jsx";
+import SliderContainer from "./SliderContainer.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -24,9 +24,13 @@ const StyledForm = styled.form`
 const Metronome = ({ notify }) => {
     const [tempo, setTempo] = useState(INITIAL_VALUE)
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
-    const [sliderValue, setSliderValue] = useState(INITIAL_VALUE)
 
     const inputRef = useRef(null)
+
+    const updateTempo = tempo => {
+        setTempo(tempo)
+        setInputValue(tempo.toString())
+    }
 
     const handleInputChange = event => {
         const newValue = event.target.value
@@ -36,11 +40,6 @@ const Metronome = ({ notify }) => {
         }
     }
 
-    const handleSliderChange = value => {
-        setSliderValue(value)
-        setInputValue(value.toString())
-        setTempo(value)
-    }
 
     const handleTempoInput = (event) => {
         event.preventDefault()
@@ -59,9 +58,8 @@ const Metronome = ({ notify }) => {
             return
         }
 
-        setTempo(newTempo)
-        setInputValue(newTempo.toString())
-        setSliderValue(newTempo)
+        updateTempo(newTempo)
+
         notify(NOTIF_TYPES.NONE)
     }
 
@@ -70,13 +68,39 @@ const Metronome = ({ notify }) => {
         setInputValue(tempo.toString())
     }
 
+    const handleTempoButtonPress = buttonType => {
+        if (buttonType === BUTTON_TYPES.PLUS) {
+            if (tempo + 5 >= TEMPO_RANGE.MAX_TEMPO) {
+                return () => updateTempo(TEMPO_RANGE.MAX_TEMPO)
+            }
+            return () => updateTempo(tempo + 5)
+        } else if (buttonType === BUTTON_TYPES.MINUS) {
+            if (tempo - 5 <= TEMPO_RANGE.MIN_TEMPO) {
+                return () => updateTempo(TEMPO_RANGE.MIN_TEMPO)
+            }
+            return () => updateTempo(tempo - 5)
+        } else {
+            return null
+        }
+    }
+
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
-                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} inputRef={inputRef} onFocusOut={handleFocusOut} />
+                <MetronomePulse
+                    inputValue={inputValue}
+                    onChange={handleInputChange}
+                    inputRef={inputRef}
+                    onFocusOut={handleFocusOut}
+                />
             </StyledForm>
-            <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
-            <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={() => console.log('clicked')}/>
+            <SliderContainer
+                initialValue={INITIAL_VALUE}
+                value={tempo}
+                onChange={updateTempo}
+                onPlus={handleTempoButtonPress(BUTTON_TYPES.PLUS)}
+                onMinus={handleTempoButtonPress(BUTTON_TYPES.MINUS)}
+            />
         </StyledMetronome>
     )
 }
