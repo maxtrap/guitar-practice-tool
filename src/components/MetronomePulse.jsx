@@ -5,6 +5,7 @@ import TempoDisplay from "./TempoDisplay.jsx";
 const MetronomeRing = styled.div`
     width: 150px;
     height: 150px;
+    margin: 20px 0;
     border: 10px solid ${COLORS.PRIMARY};
     border-radius: 50%;
     background: ${COLORS.TERTIARY};
