@@ -2,7 +2,7 @@ import { styled, createGlobalStyle } from "styled-components"
 import {COLORS, NOTIF_TYPES} from '../constants'
 import Metronome from "./Metronome.jsx";
 import Notification from "./Notification.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -26,22 +26,29 @@ const BodyDiv = styled.div`
     flex: 1 1 auto;
 `
 
+let timeoutId = null
+
 const Body = () => {
     const [notifType, setNotifType] = useState(NOTIF_TYPES.NONE)
 
     const notify = type => {
         setNotifType(type)
-    }
 
-    const clearNotif = () => {
-        notify(NOTIF_TYPES.NONE)
+        if (timeoutId) {
+            clearTimeout(timeoutId)
+        }
+
+        timeoutId = setTimeout(() => {
+            setNotifType(NOTIF_TYPES.NONE)
+            timeoutId = null
+        }, 5000)
     }
 
     return (
         <>
             <GlobalStyle />
             <BodyDiv>
-                <Notification clearNotif={clearNotif} notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
+                <Notification notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
                 <Metronome notify={notify} />
             </BodyDiv>
         </>
