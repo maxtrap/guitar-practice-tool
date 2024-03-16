@@ -37,7 +37,7 @@ const Body = () => {
         <>
             <GlobalStyle />
             <BodyDiv>
-                <Notification notifType={notifType} style={{marginBottom: 20}}/>
+                <Notification notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
                 <Metronome notify={notify} />
             </BodyDiv>
         </>
