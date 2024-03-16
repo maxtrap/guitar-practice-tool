@@ -44,6 +44,8 @@ const Metronome = ({ notify }) => {
     const handleTempoInput = (event) => {
         event.preventDefault()
 
+        inputRef.current.blur()
+
         if (inputValue === '') {
             notify(NOTIF_TYPES.NOT_A_NUMBER)
             return
@@ -57,10 +59,11 @@ const Metronome = ({ notify }) => {
         }
 
         setTempo(newTempo)
+        setInputValue(newTempo.toString())
         setSliderValue(newTempo)
         notify(NOTIF_TYPES.NONE)
     }
-    
+
 
     const handleFocusOut = () => {
         setInputValue(tempo.toString())
