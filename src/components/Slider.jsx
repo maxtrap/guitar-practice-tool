@@ -13,7 +13,6 @@ const THUMB_SIZE = SLIDER_HEIGHT;
 const StyledSlider = styled(ReactSlider)`
     width: ${SLIDER_WIDTH};
     height: ${SLIDER_HEIGHT}px;
-    margin: 10px 0;
     display: flex;
     align-items: center;
 `

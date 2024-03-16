@@ -1,7 +1,20 @@
 import PlusSign from '../assets/plus.svg?react'
 import MinusSign from '../assets/minus.svg?react'
 import {BUTTON_TYPES, COLORS} from "../constants.js";
+import {styled} from "styled-components";
 
+const ICON_SIZE = '22px';
+
+
+const IconWrapper = styled.div`
+    width: ${ICON_SIZE};
+    height: ${ICON_SIZE};
+    margin: 0 15px;
+    padding: 5px;
+    
+    border: ${COLORS.PRIMARY} solid 4px;
+    border-radius: 10px;
+`
 
 const Icon = (props) => {
     const {type, ...svgProps} = props
@@ -15,9 +28,9 @@ const Icon = (props) => {
 }
 
 const IconButton = ({ buttonType, onClick }) => {
-    return <div onClick={onClick}>
-        <Icon type={buttonType} width='30px' height='30px' fill={COLORS.PRIMARY} />
-    </div>
+    return <IconWrapper onClick={onClick} >
+        <Icon type={buttonType} width={ICON_SIZE} height={ICON_SIZE} fill={COLORS.PRIMARY} />
+    </IconWrapper>
 }
 
 export default IconButton

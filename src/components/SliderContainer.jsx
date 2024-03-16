@@ -7,6 +7,8 @@ const StyledContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 10px 0;
 `
 
 const SliderContainer = ({ initialValue, value, onChange, onPlus, onMinus }) => {
