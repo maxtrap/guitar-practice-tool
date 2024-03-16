@@ -19,8 +19,8 @@ const StyledTempoInput = styled.input`
     }
 `
 
-const TempoDisplay = ({ inputValue, onChange, onFocusOut }) => {
-    return <StyledTempoInput onBlur={onFocusOut} value={inputValue} onChange={onChange} width={inputValue.toString().length} />
+const TempoDisplay = ({ inputValue, onChange, inputRef, onFocusOut }) => {
+    return <StyledTempoInput ref={inputRef} onBlur={onFocusOut} value={inputValue} onChange={onChange} width={inputValue.toString().length} />
 }
 
 export default TempoDisplay;

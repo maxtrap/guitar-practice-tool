@@ -1,6 +1,7 @@
 import MetronomePulse from "./MetronomePulse.jsx";
 import Slider from "./Slider.jsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import SetTempoButton from "./SetTempoButton.jsx";
 import { styled } from "styled-components";
 import { TEMPO_RANGE, NOTIF_TYPES } from "../constants.js";
 
@@ -25,6 +26,7 @@ const Metronome = ({ notify }) => {
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
     const [sliderValue, setSliderValue] = useState(INITIAL_VALUE)
 
+    const inputRef = useRef(null)
 
     const handleInputChange = event => {
         const newValue = event.target.value
@@ -61,6 +63,14 @@ const Metronome = ({ notify }) => {
     }
 
 
+    const isTempoButtonEnabled = tempo.toString() !== inputValue
+
+    const handleTempoButtonClick = () => {
+        if (!isTempoButtonEnabled) {
+            inputRef.current.focus()
+        }
+    }
+
     const handleFocusOut = () => {
         setInputValue(tempo.toString())
     }
@@ -68,7 +78,8 @@ const Metronome = ({ notify }) => {
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
-                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} onFocusOut={handleFocusOut} />
+                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} inputRef={inputRef} onFocusOut={handleFocusOut} />
+                <SetTempoButton enabled={isTempoButtonEnabled} onClick={handleTempoButtonClick}/>
             </StyledForm>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
         </StyledMetronome>
