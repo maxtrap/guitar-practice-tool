@@ -21,11 +21,22 @@ const StyledNotification = styled.div`
     border-radius: 5px;
 `
 
-const Notification = ({ notifType, style }) => {
+let timeoutId = null
+
+const Notification = ({ clearNotif, notifType, style }) => {
 
     const visibilityStyle = {
         visibility: notifType === NOTIF_TYPES.NONE ? "hidden" : "visible"
     }
+
+    if (timeoutId) {
+        clearTimeout(timeoutId)
+    }
+
+    timeoutId = setTimeout(() => {
+        clearNotif()
+        timeoutId = null
+    }, 5000)
 
     return <NotifWrapper style={{...style, ...visibilityStyle}}>
         <StyledNotification>{notifType}</StyledNotification>

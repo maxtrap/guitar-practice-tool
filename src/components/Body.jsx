@@ -33,11 +33,15 @@ const Body = () => {
         setNotifType(type)
     }
 
+    const clearNotif = () => {
+        notify(NOTIF_TYPES.NONE)
+    }
+
     return (
         <>
             <GlobalStyle />
             <BodyDiv>
-                <Notification notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
+                <Notification clearNotif={clearNotif} notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
                 <Metronome notify={notify} />
             </BodyDiv>
         </>
