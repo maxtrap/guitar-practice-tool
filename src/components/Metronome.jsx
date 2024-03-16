@@ -31,7 +31,7 @@ const Metronome = ({ notify }) => {
     const handleInputChange = event => {
         const newValue = event.target.value
 
-        if (newValue.length <= 5 && /^[0-9]+$/.test(newValue)) {
+        if (newValue.length <= 5 && (/^[0-9]+$/.test(newValue) || newValue === '')) {
             setInputValue(newValue)
         }
     }
@@ -45,6 +45,11 @@ const Metronome = ({ notify }) => {
     const handleTempoInput = (event) => {
         event.preventDefault()
 
+        if (inputValue === '') {
+            notify(NOTIF_TYPES.NOT_A_NUMBER)
+            return
+        }
+
         const newTempo = Number.parseInt(inputValue)
 
         if (newTempo < TEMPO_RANGE.MIN_TEMPO || newTempo > TEMPO_RANGE.MAX_TEMPO) {
@@ -57,6 +62,7 @@ const Metronome = ({ notify }) => {
         notify(NOTIF_TYPES.NONE)
     }
 
+
     const isTempoButtonEnabled = tempo.toString() !== inputValue
 
     const handleTempoButtonClick = () => {
@@ -65,10 +71,14 @@ const Metronome = ({ notify }) => {
         }
     }
 
+    const handleFocusOut = () => {
+        setInputValue(tempo.toString())
+    }
+
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
-                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} inputRef={inputRef} />
+                <MetronomePulse inputValue={inputValue} onChange={handleInputChange} inputRef={inputRef} onFocusOut={handleFocusOut} />
                 <SetTempoButton enabled={isTempoButtonEnabled} onClick={handleTempoButtonClick}/>
             </StyledForm>
             <Slider initialValue={INITIAL_VALUE} value={sliderValue} onChange={handleSliderChange} />
