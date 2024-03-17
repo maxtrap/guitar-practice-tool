@@ -23,6 +23,10 @@ const StyledThumb = styled.div`
     height: ${THUMB_SIZE}px;
     background: ${COLORS.PRIMARY};
     border-radius: 25%;
+    
+    &:hover, &:focus {
+        box-shadow: 0 0 15px ${COLORS.PRIMARY};
+    }
 `
 
 const StyledTrack = styled.div`
