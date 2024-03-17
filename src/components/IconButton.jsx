@@ -14,6 +14,12 @@ const IconWrapper = styled.div`
     
     border: ${COLORS.PRIMARY} solid 4px;
     border-radius: 10px;
+
+    transition: 0.3s;
+    transition-timing-function: ease;
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 const Icon = (props) => {
