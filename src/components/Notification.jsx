@@ -2,8 +2,8 @@ import {styled} from "styled-components";
 import {COLORS, NOTIF_TYPES} from "../constants.js";
 
 const NotifWrapper = styled.div`
-    width: 50%;
-    min-height: 80px;
+    width: 70%;
+    min-height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;

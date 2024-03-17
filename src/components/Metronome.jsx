@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
 import IconButton from "./IconButton.jsx";
 import SliderContainer from "./SliderContainer.jsx";
+import PlayButton from "./PlayButton.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -24,6 +25,7 @@ const StyledForm = styled.form`
 const Metronome = ({ notify }) => {
     const [tempo, setTempo] = useState(INITIAL_VALUE)
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
+    const [isPlay, setIsPlay] = useState(false)
 
     const inputRef = useRef(null)
 
@@ -84,6 +86,10 @@ const Metronome = ({ notify }) => {
         }
     }
 
+    const handlePlay = () => {
+        setIsPlay(!isPlay)
+    }
+
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
@@ -101,6 +107,7 @@ const Metronome = ({ notify }) => {
                 onPlus={handleTempoButtonPress(BUTTON_TYPES.PLUS)}
                 onMinus={handleTempoButtonPress(BUTTON_TYPES.MINUS)}
             />
+            <PlayButton isPlay={isPlay} onClick={handlePlay} />
         </StyledMetronome>
     )
 }
