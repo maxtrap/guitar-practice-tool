@@ -1,16 +1,17 @@
+let audioCtx
 
-
-const audioCtx = new AudioContext()
+const SCHEDULE_INTERVAL = 25 //interval between note schedules in ms
+const SCHEDULE_AHEAD_TIME = 0.1 //time to schedule ahead in seconds
 
 export class MetronomePlayer {
 
-    constructor() {
-        this.loadSounds()
+    constructor(tempo) {
+        this.loadSound('whistle.wav')
+        this.unlocked = false
+        this.intervalId = null
+        this.timeBetweenNotes = 60.0 / tempo
     }
 
-    loadSounds = () => {
-        this.loadSound('whistle.wav')
-    }
     loadSound = (url) => {
         fetch(url)
             .then(response => response.arrayBuffer())
@@ -20,15 +21,45 @@ export class MetronomePlayer {
             })
     }
 
-    playSound = () => {
+    toggleMetronome = () => {
+        if (!audioCtx) {
+            audioCtx = new AudioContext()
+        }
+
+        if (!this.unlocked) {
+            const buffer = audioCtx.createBuffer(1, 1, 22050)
+            const node = audioCtx.createBufferSource()
+            node.buffer = buffer
+            node.start(0)
+            this.unlocked = true
+        }
+
+
+        if (this.intervalId) {
+            clearInterval(this.intervalId)
+            this.intervalId = null
+            return
+        }
+
+        this.nextNoteTime = audioCtx.currentTime
+        this.intervalId = setInterval(this.noteScheduler, SCHEDULE_INTERVAL)
+    }
+
+    noteScheduler = () => {
+        while (this.nextNoteTime < audioCtx.currentTime + SCHEDULE_AHEAD_TIME) {
+            this.scheduleNote()
+            this.advanceNextNote()
+        }
+    }
+
+    scheduleNote = () => {
         const source = audioCtx.createBufferSource()
         source.buffer = this.audioBuffer
         source.connect(audioCtx.destination)
-        source.start(0)
+        source.start(this.nextNoteTime)
     }
 
-    play = () => {
-
-
+    advanceNextNote = () => {
+        this.nextNoteTime += this.timeBetweenNotes
     }
 }

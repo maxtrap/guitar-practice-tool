@@ -92,10 +92,10 @@ const Metronome = ({ notify }) => {
         setIsPlay(!isPlay)
 
         if (!player.current) {
-            player.current = new MetronomePlayer()
+            player.current = new MetronomePlayer(tempo)
         }
 
-        player.current.playSound()
+        player.current.toggleMetronome()
     }
 
     return (
