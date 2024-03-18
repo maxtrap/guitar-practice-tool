@@ -51,11 +51,14 @@ const Metronome = ({ notify }) => {
 
     const handleTempoInput = (event) => {
         event.preventDefault()
+        inputRef.current.blur() //This triggers an onBlur/onFocusOut event which is defined below
+    }
 
-        inputRef.current.blur()
 
+    const handleFocusOut = () => {
         if (inputValue === '') {
             notify(NOTIF_TYPES.NOT_A_NUMBER)
+            setInputValue(tempo.toString())
             return
         }
 
@@ -63,17 +66,12 @@ const Metronome = ({ notify }) => {
 
         if (newTempo < TEMPO_RANGE.MIN_TEMPO || newTempo > TEMPO_RANGE.MAX_TEMPO) {
             notify(NOTIF_TYPES.OUT_OF_RANGE)
+            setInputValue(tempo.toString())
             return
         }
 
-        updateTempo(newTempo)
-
         notify(NOTIF_TYPES.NONE)
-    }
-
-
-    const handleFocusOut = () => {
-        setInputValue(tempo.toString())
+        updateTempo(newTempo)
     }
 
     const handleTempoButtonPress = buttonType => {
