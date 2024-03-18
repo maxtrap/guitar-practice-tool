@@ -17,9 +17,10 @@ const StyledButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     transition: 0.2s;
-    &:hover {
+    &:hover, &:focus-visible {
+        outline: none;
         box-shadow: 0 0 15px ${COLORS.PRIMARY};
     }
 `
