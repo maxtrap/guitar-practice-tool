@@ -16,7 +16,7 @@ export const COLORS = {
 
 export const TEMPO_RANGE = {
     MIN_TEMPO: 30,
-    MAX_TEMPO: 200
+    MAX_TEMPO: 280
 }
 
 export const NOTIF_TYPES = Object.freeze({

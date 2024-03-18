@@ -45,6 +45,10 @@ export class MetronomePlayer {
         this.intervalId = setInterval(this.noteScheduler, SCHEDULE_INTERVAL)
     }
 
+    setTempo = (newTempo) => {
+        this.timeBetweenNotes = 60.0 / newTempo
+    }
+
     noteScheduler = () => {
         while (this.nextNoteTime < audioCtx.currentTime + SCHEDULE_AHEAD_TIME) {
             this.scheduleNote()

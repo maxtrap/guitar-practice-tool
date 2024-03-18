@@ -31,9 +31,12 @@ const Metronome = ({ notify }) => {
 
     const player = useRef(null)
 
-    const updateTempo = tempo => {
-        setTempo(tempo)
-        setInputValue(tempo.toString())
+    const updateTempo = newTempo => {
+        setTempo(newTempo)
+        setInputValue(newTempo.toString())
+        if (player.current) {
+            player.current.setTempo(newTempo)
+        }
     }
 
     const handleInputChange = event => {
