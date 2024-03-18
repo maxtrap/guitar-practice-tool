@@ -6,19 +6,22 @@ import {styled} from "styled-components";
 const ICON_SIZE = '22px';
 
 
-const IconWrapper = styled.div`
+const IconWrapper = styled.button`
     width: ${ICON_SIZE};
     height: ${ICON_SIZE};
     margin: 0 15px;
     padding: 5px;
+    box-sizing: content-box;
     
+    background: none;
     border: ${COLORS.PRIMARY} solid 4px;
     border-radius: 10px;
 
     transition: 0.3s;
     transition-timing-function: ease;
-    &:hover {
+    &:hover, &:focus-visible {
         transform: scale(1.1);
+        outline: none;
     }
 `
 
