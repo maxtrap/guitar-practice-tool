@@ -6,7 +6,7 @@ const SCHEDULE_AHEAD_TIME = 0.1 //time to schedule ahead in seconds
 export class MetronomePlayer {
 
     constructor(tempo) {
-        this.loadSound('whistle.wav')
+        this.loadSound('click.mp3')
         this.unlocked = false
         this.intervalId = null
         this.timeBetweenNotes = 60.0 / tempo
