@@ -28,7 +28,6 @@ const Metronome = ({ notify }) => {
     const [isPlay, setIsPlay] = useState(false)
 
     const inputRef = useRef(null)
-
     const player = useRef(null)
 
     const updateTempo = newTempo => {
@@ -36,6 +35,8 @@ const Metronome = ({ notify }) => {
         setInputValue(newTempo.toString())
         if (player.current) {
             player.current.setTempo(newTempo)
+        } else {
+            player.current = new MetronomePlayer(newTempo)
         }
     }
 

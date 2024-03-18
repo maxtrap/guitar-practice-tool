@@ -6,8 +6,16 @@ const SCHEDULE_AHEAD_TIME = 0.1 //time to schedule ahead in seconds
 export class MetronomePlayer {
 
     constructor(tempo) {
+        if (!audioCtx) {
+            audioCtx = new AudioContext()
+        }
+
+        const buffer = audioCtx.createBuffer(1, 1, 22050)
+        const node = audioCtx.createBufferSource()
+        node.buffer = buffer
+        node.start(0)
+
         this.loadSound('click.mp3')
-        this.unlocked = false
         this.intervalId = null
         this.timeBetweenNotes = 60.0 / tempo
     }
@@ -22,17 +30,7 @@ export class MetronomePlayer {
     }
 
     toggleMetronome = () => {
-        if (!audioCtx) {
-            audioCtx = new AudioContext()
-        }
 
-        if (!this.unlocked) {
-            const buffer = audioCtx.createBuffer(1, 1, 22050)
-            const node = audioCtx.createBufferSource()
-            node.buffer = buffer
-            node.start(0)
-            this.unlocked = true
-        }
 
 
         if (this.intervalId) {
