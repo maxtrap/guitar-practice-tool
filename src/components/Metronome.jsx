@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
 import SliderContainer from "./SliderContainer.jsx";
 import PlayButton from "./PlayButton.jsx";
+import {MetronomePlayer} from "./MetronomePlayer.js";
 
 const INITIAL_VALUE = 120;
 
@@ -27,6 +28,8 @@ const Metronome = ({ notify }) => {
     const [isPlay, setIsPlay] = useState(false)
 
     const inputRef = useRef(null)
+
+    const player = useRef(null)
 
     const updateTempo = tempo => {
         setTempo(tempo)
@@ -87,6 +90,12 @@ const Metronome = ({ notify }) => {
 
     const handlePlay = () => {
         setIsPlay(!isPlay)
+
+        if (!player.current) {
+            player.current = new MetronomePlayer()
+        }
+
+        player.current.playSound()
     }
 
     return (
