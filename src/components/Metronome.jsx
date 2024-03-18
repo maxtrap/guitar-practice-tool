@@ -2,7 +2,6 @@ import MetronomePulse from "./MetronomePulse.jsx";
 import {useRef, useState} from "react";
 import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
-import IconButton from "./IconButton.jsx";
 import SliderContainer from "./SliderContainer.jsx";
 import PlayButton from "./PlayButton.jsx";
 
