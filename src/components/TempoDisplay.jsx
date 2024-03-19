@@ -12,6 +12,11 @@ const StyledTempoInput = styled.input`
     
     width: ${ ({ width }) => (width) }ch;
 
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
     &:focus {
         outline: ${COLORS.FONT_COLOR} solid 2px;
         border-radius: 4px;

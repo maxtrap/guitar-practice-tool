@@ -1,10 +1,12 @@
-import MetronomePulse from "./MetronomePulse.jsx";
+import MetronomeRing from "./MetronomeRing.jsx";
 import {useRef, useState} from "react";
 import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
 import SliderContainer from "./SliderContainer.jsx";
 import PlayButton from "./PlayButton.jsx";
 import {MetronomePlayer} from "./MetronomePlayer.js";
+import PulseTempoWrapper from "./PulseTempoWrapper.jsx";
+import TempoDisplay from "./TempoDisplay.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -108,14 +110,18 @@ const Metronome = ({ notify }) => {
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
-                <MetronomePulse
-                    key={animationKey}
-                    isPulsing={isPlay}
-                    inputValue={inputValue}
-                    onChange={handleInputChange}
-                    inputRef={inputRef}
-                    onFocusOut={handleFocusOut}
-                />
+                <PulseTempoWrapper>
+                    <MetronomeRing
+                        key={animationKey}
+                        $isPulsing={isPlay}
+                    />
+                    <TempoDisplay
+                        inputValue={inputValue}
+                        onChange={handleInputChange}
+                        inputRef={inputRef}
+                        onFocusOut={handleFocusOut}
+                    />
+                </PulseTempoWrapper>
             </StyledForm>
             <SliderContainer
                 initialValue={INITIAL_VALUE}
