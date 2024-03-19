@@ -9,6 +9,7 @@ import PulseTempoWrapper from "./PulseTempoWrapper.jsx";
 import TempoDisplay from "./TempoDisplay.jsx";
 import IconButton from "./IconButton.jsx";
 import Slider from "./Slider.jsx";
+import Notification from "./Notification.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -26,7 +27,7 @@ const StyledForm = styled.form`
     align-items: center;
 `
 
-const Metronome = ({ notify }) => {
+const Metronome = () => {
     const [tempo, setTempo] = useState(INITIAL_VALUE)
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
     const [isPlay, setIsPlay] = useState(false)
@@ -34,6 +35,22 @@ const Metronome = ({ notify }) => {
 
     const inputRef = useRef(null)
     const player = useRef(null)
+
+    const [notifType, setNotifType] = useState(NOTIF_TYPES.NONE)
+    const notifTimeoutId = useRef(null)
+
+    const notify = type => {
+        setNotifType(type)
+
+        if (notifTimeoutId.current) {
+            clearTimeout(notifTimeoutId.current)
+        }
+
+        notifTimeoutId.current = setTimeout(() => {
+            setNotifType(NOTIF_TYPES.NONE)
+            notifTimeoutId.current = null
+        }, 5000)
+    }
 
     const updateTempo = newTempo => {
         setTempo(newTempo)
@@ -111,6 +128,7 @@ const Metronome = ({ notify }) => {
 
     return (
         <StyledMetronome>
+            <Notification notifType={notifType} style={{marginTop: 10, marginBottom: 20}} />
             <StyledForm onSubmit={handleTempoInput}>
                 <PulseTempoWrapper>
                     <MetronomeRing

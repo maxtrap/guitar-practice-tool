@@ -1,8 +1,6 @@
 import { styled, createGlobalStyle } from "styled-components"
 import {COLORS, NOTIF_TYPES} from '../constants'
 import Metronome from "./Metronome.jsx";
-import Notification from "./Notification.jsx";
-import {useRef, useState} from "react";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -28,28 +26,12 @@ const BodyDiv = styled.div`
 
 
 const Body = () => {
-    const [notifType, setNotifType] = useState(NOTIF_TYPES.NONE)
-    const timeoutId = useRef(null)
-
-    const notify = type => {
-        setNotifType(type)
-
-        if (timeoutId.current) {
-            clearTimeout(timeoutId.current)
-        }
-
-        timeoutId.current = setTimeout(() => {
-            setNotifType(NOTIF_TYPES.NONE)
-            timeoutId.current = null
-        }, 5000)
-    }
 
     return (
         <>
             <GlobalStyle />
             <BodyDiv>
-                <Notification notifType={notifType} style={{marginTop: 10, marginBottom: 20}}/>
-                <Metronome notify={notify} />
+                <Metronome/>
             </BodyDiv>
         </>
     )
