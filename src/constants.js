@@ -29,3 +29,11 @@ export const BUTTON_TYPES = Object.freeze({
     PLUS: 1,
     MINUS: 2
 })
+
+export const SUBDIVISION_TYPES = Object.freeze({
+    QUARTER: 1,
+    EIGHTH: 2,
+    TRIPLET: 3,
+    SIXTEENTH: 4,
+    SWUNG: 5
+})

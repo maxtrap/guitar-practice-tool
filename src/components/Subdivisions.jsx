@@ -1,5 +1,6 @@
 import {styled} from "styled-components";
-import {COLORS} from '../constants'
+import {COLORS, SUBDIVISION_TYPES} from '../constants'
+import SubdivisionButton from "./SubdivisionButton.jsx";
 
 const BORDER_WIDTH = 6
 
@@ -28,20 +29,12 @@ const SubdivisionsWrapper = styled.div`
     
 `
 
-const Box = styled.div`
-    height: 100%;
-
-    box-sizing: border-box;
-
-    display: flex;
-    flex-grow: 1;
-`
-
 const Subdivisions = () => {
     return <SubdivisionsWrapper>
-        <Box />
-        <Box />
-        <Box />
+        <SubdivisionButton noteType={SUBDIVISION_TYPES.QUARTER} />
+        <SubdivisionButton noteType={SUBDIVISION_TYPES.EIGHTH} />
+        <SubdivisionButton noteType={SUBDIVISION_TYPES.TRIPLET} />
+        <SubdivisionButton noteType={SUBDIVISION_TYPES.SIXTEENTH} />
     </SubdivisionsWrapper>
 }
 
