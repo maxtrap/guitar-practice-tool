@@ -10,6 +10,7 @@ import TempoDisplay from "./TempoDisplay.jsx";
 import IconButton from "./IconButton.jsx";
 import Slider from "./Slider.jsx";
 import Notification from "./Notification.jsx";
+import Subdivisions from "./Subdivisions.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -149,6 +150,7 @@ const Metronome = () => {
                 <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={handleTempoButtonPress(BUTTON_TYPES.PLUS)}/>
             </SliderContainer>
             <PlayButton isPlay={isPlay} onClick={handlePlay} />
+            <Subdivisions />
         </StyledMetronome>
     )
 }
