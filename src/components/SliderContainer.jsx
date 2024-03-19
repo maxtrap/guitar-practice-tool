@@ -1,22 +1,11 @@
-import Slider from "./Slider.jsx";
 import {styled} from "styled-components";
-import {BUTTON_TYPES} from "../constants.js";
-import IconButton from "./IconButton.jsx";
 
-const StyledContainer = styled.div`
+const SliderContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px 0;
 `
-
-const SliderContainer = ({ initialValue, value, onChange, onPlus, onMinus }) => {
-    return <StyledContainer>
-        <IconButton buttonType={BUTTON_TYPES.MINUS} onClick={onMinus}/>
-        <Slider initialValue={initialValue} value={value} onChange={onChange} />
-        <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={onPlus}/>
-    </StyledContainer>
-}
 
 export default SliderContainer

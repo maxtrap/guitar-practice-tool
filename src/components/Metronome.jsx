@@ -7,6 +7,8 @@ import PlayButton from "./PlayButton.jsx";
 import {MetronomePlayer} from "./MetronomePlayer.js";
 import PulseTempoWrapper from "./PulseTempoWrapper.jsx";
 import TempoDisplay from "./TempoDisplay.jsx";
+import IconButton from "./IconButton.jsx";
+import Slider from "./Slider.jsx";
 
 const INITIAL_VALUE = 120;
 
@@ -123,13 +125,11 @@ const Metronome = ({ notify }) => {
                     />
                 </PulseTempoWrapper>
             </StyledForm>
-            <SliderContainer
-                initialValue={INITIAL_VALUE}
-                value={tempo}
-                onChange={updateTempo}
-                onPlus={handleTempoButtonPress(BUTTON_TYPES.PLUS)}
-                onMinus={handleTempoButtonPress(BUTTON_TYPES.MINUS)}
-            />
+            <SliderContainer>
+                <IconButton buttonType={BUTTON_TYPES.MINUS} onClick={handleTempoButtonPress(BUTTON_TYPES.MINUS)}/>
+                <Slider initialValue={INITIAL_VALUE} value={tempo} onChange={updateTempo} />
+                <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={handleTempoButtonPress(BUTTON_TYPES.PLUS)}/>
+            </SliderContainer>
             <PlayButton isPlay={isPlay} onClick={handlePlay} />
         </StyledMetronome>
     )
