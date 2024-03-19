@@ -14,7 +14,7 @@ const StyledTempoInput = styled.input`
 
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
     
     &:focus {
@@ -24,8 +24,23 @@ const StyledTempoInput = styled.input`
     }
 `
 
+const BPMText = styled.p`
+    color: ${COLORS.FONT_COLOR};
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+    
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+`
+
 const TempoDisplay = ({ inputValue, onChange, inputRef, onFocusOut }) => {
-    return <StyledTempoInput name='tempo' ref={inputRef} onBlur={onFocusOut} value={inputValue} onChange={onChange} width={inputValue.toString().length} />
+    return <>
+        <StyledTempoInput name='tempo' ref={inputRef} onBlur={onFocusOut} value={inputValue} onChange={onChange} width={inputValue.toString().length} />
+        <BPMText>BPM</BPMText>
+    </>
 }
 
 export default TempoDisplay;
