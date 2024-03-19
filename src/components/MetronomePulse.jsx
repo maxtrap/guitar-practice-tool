@@ -1,6 +1,11 @@
-import { styled } from 'styled-components'
+import {keyframes, styled} from 'styled-components'
 import { COLORS } from '../constants'
 import TempoDisplay from "./TempoDisplay.jsx";
+
+const pulse = keyframes`
+    0% {transform: scale(1.15)}
+    100% {transform: scale(1)}
+`
 
 const MetronomeRing = styled.div`
     width: 150px;
@@ -12,14 +17,17 @@ const MetronomeRing = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    animation-name: ${({$isPulsing}) => ($isPulsing ? pulse : 'none')};
+    animation-duration: 1s;
 `
 
 
 
-const MetronomePulse = ({ inputValue, onChange, inputRef, onFocusOut }) => {
+const MetronomePulse = ({ isPulsing, inputValue, onChange, inputRef, onFocusOut }) => {
     return (
         <div>
-            <MetronomeRing>
+            <MetronomeRing $isPulsing={isPulsing}>
                 <TempoDisplay inputValue={inputValue} onChange={onChange} inputRef={inputRef} onFocusOut={onFocusOut} />
             </MetronomeRing>
         </div>

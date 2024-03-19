@@ -26,6 +26,7 @@ const Metronome = ({ notify }) => {
     const [tempo, setTempo] = useState(INITIAL_VALUE)
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
     const [isPlay, setIsPlay] = useState(false)
+    const [animationKey, setAnimationKey] = useState(0)
 
     const inputRef = useRef(null)
     const player = useRef(null)
@@ -36,7 +37,7 @@ const Metronome = ({ notify }) => {
         if (player.current) {
             player.current.setTempo(newTempo)
         } else {
-            player.current = new MetronomePlayer(newTempo)
+            player.current = new MetronomePlayer(newTempo, playPulseAnimation)
         }
     }
 
@@ -94,16 +95,22 @@ const Metronome = ({ notify }) => {
         setIsPlay(!isPlay)
 
         if (!player.current) {
-            player.current = new MetronomePlayer(tempo)
+            player.current = new MetronomePlayer(tempo, playPulseAnimation)
         }
 
         player.current.toggleMetronome()
+    }
+
+    const playPulseAnimation = () => {
+        setAnimationKey(prevKey => prevKey + 1)
     }
 
     return (
         <StyledMetronome>
             <StyledForm onSubmit={handleTempoInput}>
                 <MetronomePulse
+                    key={animationKey}
+                    isPulsing={isPlay}
                     inputValue={inputValue}
                     onChange={handleInputChange}
                     inputRef={inputRef}

@@ -5,7 +5,7 @@ const SCHEDULE_AHEAD_TIME = 0.1 //time to schedule ahead in seconds
 
 export class MetronomePlayer {
 
-    constructor(tempo) {
+    constructor(tempo, playAnimation) {
         if (!audioCtx) {
             audioCtx = new AudioContext()
         }
@@ -18,6 +18,7 @@ export class MetronomePlayer {
         this.loadSound('click.mp3')
         this.intervalId = null
         this.timeBetweenNotes = 60.0 / tempo
+        this.playAnimation = playAnimation
     }
 
     loadSound = (url) => {
@@ -30,9 +31,6 @@ export class MetronomePlayer {
     }
 
     toggleMetronome = () => {
-
-
-
         if (this.intervalId) {
             clearInterval(this.intervalId)
             this.intervalId = null
@@ -50,6 +48,7 @@ export class MetronomePlayer {
     noteScheduler = () => {
         while (this.nextNoteTime < audioCtx.currentTime + SCHEDULE_AHEAD_TIME) {
             this.scheduleNote()
+            this.schedulePulseAnimation()
             this.advanceNextNote()
         }
     }
@@ -63,5 +62,9 @@ export class MetronomePlayer {
 
     advanceNextNote = () => {
         this.nextNoteTime += this.timeBetweenNotes
+    }
+
+    schedulePulseAnimation = () => {
+        setTimeout(this.playAnimation, this.nextNoteTime - audioCtx.currentTime)
     }
 }
