@@ -26,7 +26,7 @@ export class MetronomePlayer {
         this.tempo = tempo
         this.subdivision = new SimpleSubdivision(subdivision)
         this.timeBetweenNotes = this.subdivision.getTimeBetweenDivision(tempo)
-        this.advanceNextNoteBuffer()
+        this.nextNoteType = this.subdivision.nextNoteType()
     }
 
     loadSound = (url, load) => {
@@ -38,17 +38,14 @@ export class MetronomePlayer {
             })
     }
 
-    advanceNextNoteBuffer = () => {
-        switch (this.subdivision.nextNoteType()) {
+    getNextNoteBuffer = () => {
+        switch (this.nextNoteType) {
             case NOTE_TYPES.STRONG:
-                this.nextNoteBuffer = this.strongBuffer
-                return
+                return this.strongBuffer
             case NOTE_TYPES.WEAK:
-                this.nextNoteBuffer = this.weakBuffer
-                return
+                return this.weakBuffer
             default:
-                this.nextNoteBuffer = null
-                return
+                return null
         }
     }
 
@@ -82,9 +79,10 @@ export class MetronomePlayer {
     }
 
     scheduleNote = () => {
-        if (this.nextNoteBuffer) {
+        const buffer = this.getNextNoteBuffer()
+        if (buffer) {
             const source = audioCtx.createBufferSource()
-            source.buffer = this.nextNoteBuffer
+            source.buffer = buffer
             source.connect(audioCtx.destination)
             source.start(this.nextNoteTime)
         }
@@ -92,10 +90,12 @@ export class MetronomePlayer {
 
     advanceNextNote = () => {
         this.nextNoteTime += this.timeBetweenNotes
-        this.advanceNextNoteBuffer()
+        this.nextNoteType = this.subdivision.nextNoteType()
     }
 
     schedulePulseAnimation = () => {
-        setTimeout(this.playAnimation, this.nextNoteTime - audioCtx.currentTime)
+        if (this.nextNoteType === NOTE_TYPES.STRONG) {
+            setTimeout(this.playAnimation, this.nextNoteTime - audioCtx.currentTime)
+        }
     }
 }
