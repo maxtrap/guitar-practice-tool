@@ -8,7 +8,8 @@ import {COLORS, SUBDIVISION_TYPES} from "../constants.js";
 export const BUTTON_WIDTH = 120
 
 const StyledButton = styled.button`
-    background: none;
+    background: ${ ({ $isSelected }) => $isSelected ? COLORS.SECONDARY : 'none' };
+    
 
     height: 100%;
     width: ${BUTTON_WIDTH}px;
@@ -45,8 +46,8 @@ const NoteIcon = (props) => {
     }
 }
 
-const SubdivisionButton = ({ noteType, onClick }) => {
-    return <StyledButton onClick={onClick}>
+const SubdivisionButton = ({ noteType, onClick, isSelected }) => {
+    return <StyledButton onClick={onClick} $isSelected={isSelected}>
         <NoteIcon noteType={noteType} />
     </StyledButton>
 }

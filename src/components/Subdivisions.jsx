@@ -54,18 +54,22 @@ const Subdivisions = ({ currentSubdivision, setSubdivision }) => {
             <SubdivisionButton
                 noteType={SUBDIVISION_TYPES.QUARTER}
                 onClick={handleClick(SUBDIVISION_TYPES.QUARTER)}
+                isSelected={currentSubdivision === SUBDIVISION_TYPES.QUARTER}
             />
             <SubdivisionButton
                 noteType={SUBDIVISION_TYPES.EIGHTH}
                 onClick={handleClick(SUBDIVISION_TYPES.EIGHTH)}
+                isSelected={currentSubdivision === SUBDIVISION_TYPES.EIGHTH}
             />
             <SubdivisionButton
                 noteType={SUBDIVISION_TYPES.TRIPLET}
                 onClick={handleClick(SUBDIVISION_TYPES.TRIPLET)}
+                isSelected={currentSubdivision === SUBDIVISION_TYPES.TRIPLET}
             />
             <SubdivisionButton
                 noteType={SUBDIVISION_TYPES.SIXTEENTH}
                 onClick={handleClick(SUBDIVISION_TYPES.SIXTEENTH)}
+                isSelected={currentSubdivision === SUBDIVISION_TYPES.SIXTEENTH}
             />
         </SubdivisionsButtonWrapper>
     </SubdivisionsWrapper>
