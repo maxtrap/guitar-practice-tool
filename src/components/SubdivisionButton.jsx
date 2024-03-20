@@ -3,6 +3,7 @@ import Quarter from '../assets/quarter.svg?react'
 import Eighth from '../assets/eighth.svg?react'
 import Triplet from '../assets/triplet.svg?react'
 import Sixteenth from '../assets/sixteenth.svg?react'
+import Swing from '../assets/swing.svg?react'
 import {COLORS, SUBDIVISION_TYPES} from "../constants.js";
 
 
@@ -32,13 +33,15 @@ const NoteIcon = (props) => {
 
     switch (noteType) {
         case SUBDIVISION_TYPES.QUARTER:
-            return <Quarter width={ICON_SIZE} height={ICON_SIZE} fill={ICON_COLOR}/>
+            return <Quarter width={ICON_SIZE} height={ICON_SIZE} fill={ICON_COLOR} />
         case SUBDIVISION_TYPES.EIGHTH:
-            return <Eighth {...svgProps} width={ICON_SIZE} height={ICON_SIZE} fill={ICON_COLOR}/>
+            return <Eighth {...svgProps} width={ICON_SIZE} height={ICON_SIZE} fill={ICON_COLOR} />
         case SUBDIVISION_TYPES.TRIPLET:
-            return <Triplet {...svgProps} width={ICON_SIZE * 2} height={ICON_SIZE} fill={ICON_COLOR}/>
+            return <Triplet {...svgProps} width={ICON_SIZE * 2} height={ICON_SIZE} fill={ICON_COLOR} />
         case SUBDIVISION_TYPES.SIXTEENTH:
-            return <Sixteenth {...svgProps} width={ICON_SIZE * 3} height={ICON_SIZE} fill={ICON_COLOR} stroke={ICON_COLOR}/>
+            return <Sixteenth {...svgProps} width={ICON_SIZE * 3} height={ICON_SIZE} fill={ICON_COLOR} stroke={ICON_COLOR} />
+        case SUBDIVISION_TYPES.SWUNG:
+            return <Swing {...svgProps} width={ICON_SIZE * 3} height={ICON_SIZE} fill={ICON_COLOR} />
         default:
             return null
     }

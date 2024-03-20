@@ -34,7 +34,7 @@ const Metronome = () => {
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
     const [isPlay, setIsPlay] = useState(false)
     const [animationKey, setAnimationKey] = useState(0)
-    const [subdivision, setSubdivision] = useState(SUBDIVISION_TYPES.EIGHTH)
+    const [subdivision, setSubdivision] = useState(SUBDIVISION_TYPES.QUARTER)
 
     const inputRef = useRef(null)
     const player = useRef(null)

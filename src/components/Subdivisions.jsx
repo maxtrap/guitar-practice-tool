@@ -53,6 +53,11 @@ const Subdivisions = ({ currentSubdivision, setSubdivision }) => {
             onClick={handleClick(SUBDIVISION_TYPES.SIXTEENTH)}
             isSelected={currentSubdivision === SUBDIVISION_TYPES.SIXTEENTH}
         />
+        <SubdivisionButton
+            noteType={SUBDIVISION_TYPES.SWUNG}
+            onClick={handleClick(SUBDIVISION_TYPES.SWUNG)}
+            isSelected={currentSubdivision === SUBDIVISION_TYPES.SWUNG}
+        />
     </SubdivisionsWrapper>
 }
 
