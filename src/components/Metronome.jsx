@@ -1,5 +1,5 @@
 import MetronomeRing from "./MetronomeRing.jsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import { styled } from "styled-components";
 import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES, SUBDIVISION_TYPES} from "../constants.js";
 import SliderContainer from "./SliderContainer.jsx";
@@ -61,9 +61,15 @@ const Metronome = () => {
         if (player.current) {
             player.current.setTempo(newTempo)
         } else {
-            player.current = new MetronomePlayer(newTempo, playPulseAnimation)
+            player.current = new MetronomePlayer(newTempo, subdivision, playPulseAnimation)
         }
     }
+
+    useEffect(() => {
+        if (player.current) {
+            player.current.setSubdivision(subdivision)
+        }
+    }, [subdivision]);
 
     const handleInputChange = event => {
         const newValue = event.target.value
@@ -119,7 +125,7 @@ const Metronome = () => {
         setIsPlay(!isPlay)
 
         if (!player.current) {
-            player.current = new MetronomePlayer(tempo, playPulseAnimation)
+            player.current = new MetronomePlayer(tempo, subdivision, playPulseAnimation)
         }
 
         player.current.toggleMetronome()

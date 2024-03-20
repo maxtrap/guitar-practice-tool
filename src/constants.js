@@ -37,3 +37,9 @@ export const SUBDIVISION_TYPES = Object.freeze({
     SIXTEENTH: 3,
     SWUNG: 4
 })
+
+export const NOTE_TYPES = Object.freeze({
+    NONE: 0,
+    WEAK: 1,
+    STRONG: 2
+})
