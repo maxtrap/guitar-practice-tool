@@ -1,7 +1,7 @@
 import MetronomeRing from "./MetronomeRing.jsx";
 import {useRef, useState} from "react";
 import { styled } from "styled-components";
-import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES} from "../constants.js";
+import {TEMPO_RANGE, NOTIF_TYPES, BUTTON_TYPES, SUBDIVISION_TYPES} from "../constants.js";
 import SliderContainer from "./SliderContainer.jsx";
 import PlayButton from "./PlayButton.jsx";
 import {MetronomePlayer} from "./MetronomePlayer.js";
@@ -20,6 +20,7 @@ const StyledMetronome = styled.div`
     align-items: center;
     
     width: 100%;
+    margin-bottom: 20px;
 `
 
 const StyledForm = styled.form`
@@ -33,6 +34,7 @@ const Metronome = () => {
     const [inputValue, setInputValue] = useState(INITIAL_VALUE.toString())
     const [isPlay, setIsPlay] = useState(false)
     const [animationKey, setAnimationKey] = useState(0)
+    const [subdivision, setSubdivision] = useState(SUBDIVISION_TYPES.EIGHTH)
 
     const inputRef = useRef(null)
     const player = useRef(null)
@@ -150,7 +152,7 @@ const Metronome = () => {
                 <IconButton buttonType={BUTTON_TYPES.PLUS} onClick={handleTempoButtonPress(BUTTON_TYPES.PLUS)}/>
             </SliderContainer>
             <PlayButton isPlay={isPlay} onClick={handlePlay} />
-            <Subdivisions />
+            <Subdivisions currentSubdivision={subdivision} setSubdivision={setSubdivision}/>
         </StyledMetronome>
     )
 }

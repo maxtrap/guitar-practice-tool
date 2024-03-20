@@ -5,22 +5,22 @@ import Triplet from '../assets/triplet.svg?react'
 import Sixteenth from '../assets/sixteenth.svg?react'
 import {COLORS, SUBDIVISION_TYPES} from "../constants.js";
 
-const StyledButton = styled.div`
+export const BUTTON_WIDTH = 120
+
+const StyledButton = styled.button`
     background: none;
 
     height: 100%;
+    width: ${BUTTON_WIDTH}px;
 
     box-sizing: border-box;
 
     display: flex;
-    flex: 1 1 0;
-    
     justify-content: center;
     align-items: center;
     
     transition-duration: 0.3s;
     &:hover {
-        
         background: ${COLORS.SECONDARY};
     }
 `
@@ -45,8 +45,8 @@ const NoteIcon = (props) => {
     }
 }
 
-const SubdivisionButton = ({ noteType }) => {
-    return <StyledButton>
+const SubdivisionButton = ({ noteType, onClick }) => {
+    return <StyledButton onClick={onClick}>
         <NoteIcon noteType={noteType} />
     </StyledButton>
 }

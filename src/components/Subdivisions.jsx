@@ -1,15 +1,18 @@
 import {styled} from "styled-components";
 import {COLORS, SUBDIVISION_TYPES} from '../constants'
-import SubdivisionButton from "./SubdivisionButton.jsx";
+import SubdivisionButton, {BUTTON_WIDTH} from "./SubdivisionButton.jsx";
 
 const BORDER_WIDTH = 6
 
 const SubdivisionsWrapper = styled.div`
-    width: 500px;
-    aspect-ratio: 5;
+    height: 100px;
     margin-top: 20px;
+    position: relative;
+`
 
+const SubdivisionsButtonWrapper = styled.div`
     display: flex;
+    height: 100%;
 
     >* {
         border-color: ${COLORS.PRIMARY};
@@ -29,12 +32,42 @@ const SubdivisionsWrapper = styled.div`
     
 `
 
-const Subdivisions = () => {
+const SubdivisionHighlight = styled.div`
+    width: ${BUTTON_WIDTH}px;
+    height: 100%;
+    border: ${COLORS.SECONDARY} solid 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    
+    position: absolute;
+    transition-duration: 0.3s;
+    transform: translateX(${ ({ $currentSubdivision }) => ($currentSubdivision * BUTTON_WIDTH) }px) scale(1.08) ;
+`
+
+const Subdivisions = ({ currentSubdivision, setSubdivision }) => {
+
+    const handleClick = (subdivision) => () => setSubdivision(subdivision)
+
     return <SubdivisionsWrapper>
-        <SubdivisionButton noteType={SUBDIVISION_TYPES.QUARTER} />
-        <SubdivisionButton noteType={SUBDIVISION_TYPES.EIGHTH} />
-        <SubdivisionButton noteType={SUBDIVISION_TYPES.TRIPLET} />
-        <SubdivisionButton noteType={SUBDIVISION_TYPES.SIXTEENTH} />
+        <SubdivisionHighlight $currentSubdivision={currentSubdivision} />
+        <SubdivisionsButtonWrapper>
+            <SubdivisionButton
+                noteType={SUBDIVISION_TYPES.QUARTER}
+                onClick={handleClick(SUBDIVISION_TYPES.QUARTER)}
+            />
+            <SubdivisionButton
+                noteType={SUBDIVISION_TYPES.EIGHTH}
+                onClick={handleClick(SUBDIVISION_TYPES.EIGHTH)}
+            />
+            <SubdivisionButton
+                noteType={SUBDIVISION_TYPES.TRIPLET}
+                onClick={handleClick(SUBDIVISION_TYPES.TRIPLET)}
+            />
+            <SubdivisionButton
+                noteType={SUBDIVISION_TYPES.SIXTEENTH}
+                onClick={handleClick(SUBDIVISION_TYPES.SIXTEENTH)}
+            />
+        </SubdivisionsButtonWrapper>
     </SubdivisionsWrapper>
 }
 
