@@ -68,6 +68,7 @@ export class MetronomePlayer {
     setSubdivision = (subdivision) => {
         this.subdivision = new SimpleSubdivision(subdivision)
         this.timeBetweenNotes = this.subdivision.getTimeBetweenDivision(this.tempo)
+        this.nextNoteType = this.subdivision.nextNoteType()
     }
 
     noteScheduler = () => {
