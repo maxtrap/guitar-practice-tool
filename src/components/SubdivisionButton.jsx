@@ -5,18 +5,16 @@ import Triplet from '../assets/triplet.svg?react'
 import Sixteenth from '../assets/sixteenth.svg?react'
 import {COLORS, SUBDIVISION_TYPES} from "../constants.js";
 
-export const BUTTON_WIDTH = 120
 
 const StyledButton = styled.button`
     background: ${ ({ $isSelected }) => $isSelected ? COLORS.SECONDARY : 'none' };
+    box-shadow: ${ ({ $isSelected }) => $isSelected ? `0 0 20px ${COLORS.PRIMARY}` : 'none' };
     
 
     height: 100%;
-    width: ${BUTTON_WIDTH}px;
-
     box-sizing: border-box;
-
     display: flex;
+    flex: 1 1 0;
     justify-content: center;
     align-items: center;
     
