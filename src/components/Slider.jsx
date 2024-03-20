@@ -23,7 +23,8 @@ const StyledThumb = styled.div`
     height: ${THUMB_SIZE}px;
     background: ${COLORS.PRIMARY};
     border-radius: 25%;
-    
+
+    transition: box-shadow 0.2s;
     &:hover, &:focus {
         box-shadow: 0 0 15px ${COLORS.PRIMARY};
     }
